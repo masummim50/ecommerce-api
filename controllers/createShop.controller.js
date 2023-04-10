@@ -15,7 +15,7 @@ const createShopController = async (req, res, next)=> {
             })
         }
         const data = req.body;
-        const createdShop = await shopModel.create(req.body);
+        const createdShop = await shopModel.create({...req.body, shopOwner:user.id});
         const update = await SellerModel.findOneAndUpdate({_id:mongoose.Types.ObjectId(user.id)}, {shop:mongoose.Types.ObjectId(createdShop._id)});
         return res.json({
             status:'shop created successfully',

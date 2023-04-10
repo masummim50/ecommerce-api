@@ -125,12 +125,11 @@ module.exports.loginController = async (req, res, next) => {
                 message:'seller not found'
             })
         }
-        const isPasswordValid = async()=> {
-            return await bcrypt.compareSync(password, user.password);
-        }
+        let isPasswordValid = await bcrypt.compareSync(password, user.password)
 
-        if(!isPasswordValid){
-            return res.status(400).json({
+        if(isPasswordValid === false){
+          console.log('invalid')
+            return res.status(500).json({
                 status:'fail',
                 message:'Provide correct credentials'
             })
@@ -143,7 +142,7 @@ module.exports.loginController = async (req, res, next) => {
         }
         // create an accesstoken with jwt
         const accessToken = await jwt.sign(payload, process.env.JWT_SECRET, {expiresIn:'2 days'});
-        console.log(accessToken)
+        // console.log(accessToken)
         return res.status(200).json({
             status:'success',
             message:'log in successful',

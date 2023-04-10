@@ -3,6 +3,7 @@ const cors = require("cors");
 const UserModel = require("./models/user");
 const authRouter = require("./router/auth.router");
 const sellerRouter = require("./router/seller.router");
+const publicRouter = require("./router/public.router");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.static(__dirname));
 // app.use("/", somerouter)
 app.use("/", authRouter)
 app.use("/", sellerRouter)
+app.use("/", publicRouter)
 
 app.get("/", (req, res) => {
   try {
