@@ -9,7 +9,6 @@ const shopSchema = new Schema({
     shopOwner:{
         type: mongoose.Types.ObjectId,
         ref: 'Seller',
-        required:true
     },
     products: [
         {

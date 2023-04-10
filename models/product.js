@@ -28,15 +28,18 @@ const productSchema = new Schema({
         required:true,
         maxlength:5
     },
-    sold: Number,
-    buyers:{
+    sold: {
+        type:Number,
+        default: 0
+    },
+    buyers:[{
         type:mongoose.Types.ObjectId,
         ref:'User'
-    },
-    review: {
+    }],
+    review: [{
         type: mongoose.Types.ObjectId,
         ref:'Review'
-    },
+    }],
     seller: {
         type:mongoose.Types.ObjectId,
         ref:'Seller',
